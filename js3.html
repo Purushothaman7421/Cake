@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Gallery</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .gallery { display: flex; flex-wrap: wrap; gap: 10px; }
+        .gallery-item { position: relative; }
+        .gallery-item img { width: 150px; height: 150px; object-fit: cover; }
+        .remove-btn { position: absolute; top: 5px; right: 5px; background: red; color: white; border: none; border-radius: 50%; padding: 5px; cursor: pointer; }
+        .folder { margin: 10px 0; }
+        .folder-btn { margin-right: 10px; padding: 5px 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<h1>Personal Image Gallery</h1>
+
+<!-- Folder Creation -->
+<div>
+    <label for="folderName">Folder Name: </label>
+    <input type="text" id="folderName" placeholder="Enter folder name" />
+    <button onclick="createFolder()">Create Folder</button>
+</div>
+
+<!-- Folder Display -->
+<div id="folders"></div>
+
+<!-- Image Upload and Display -->
+<div class="gallery">
+    <input type="file" id="imageUpload" accept="image/*" onchange="uploadImage(event)" />
+    <div id="galleryItems"></div>
+</div>
+
+<script>
+    let folders = {}; // Store folders and their images
+    let currentFolder = 'default'; // Default folder
+
+    // Create folder function
+    function createFolder() {
+        const folderName = document.getElementById('folderName').value.trim();
+        if (folderName && !folders[folderName]) {
+            folders[folderName] = [];
+            updateFolders();
+        }
+    }
+
+    // Update folder list on the page
+    function updateFolders() {
+        const foldersContainer = document.getElementById('folders');
+        foldersContainer.innerHTML = '';
+
+        for (const folder in folders) {
+            const folderBtn = document.createElement('button');
+            folderBtn.textContent = folder;
+            folderBtn.className = 'folder-btn';
+            folderBtn.onclick = () => switchFolder(folder);
+            foldersContainer.appendChild(folderBtn);
+        }
+    }
+
+    // Switch to a different folder
+    function switchFolder(folder) {
+        currentFolder = folder;
+        document.getElementById('galleryItems').innerHTML = ''; // Clear current images
+        displayImages(); // Display images from the selected folder
+    }
+
+    // Upload image function
+    function uploadImage(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const imgData = e.target.result;
+                folders[currentFolder].push(imgData);
+                displayImages();
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+
+    // Display images in the current folder
+    function displayImages() {
+        const galleryItems = document.getElementById('galleryItems');
+        galleryItems.innerHTML = '';
+
+        folders[currentFolder].forEach((imgData, index) => {
+            const imgDiv = document.createElement('div');
+            imgDiv.className = 'gallery-item';
+
+            const img = document.createElement('img');
+            img.src = imgData;
+
+            const removeBtn = document.createElement('button');
+            removeBtn.className = 'remove-btn';
+            removeBtn.textContent = 'X';
+            removeBtn.onclick = () => removeImage(index);
+
+            imgDiv.appendChild(img);
+            imgDiv.appendChild(removeBtn);
+            galleryItems.appendChild(imgDiv);
+        });
+    }
+
+    // Remove image from the current folder
+    function removeImage(index) {
+        folders[currentFolder].splice(index, 1);
+        displayImages();
+    }
+
+    // Initial setup (add default folder and display images)
+    window.onload = function() {
+        if (!folders['default']) {
+            folders['default'] = [];
+        }
+        updateFolders();
+        displayImages();
+    };
+</script>
+
+</body>
+</html>
