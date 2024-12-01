@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cake Shop</title>
+    <style>
+        /* General styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        h1, h2 {
+            margin: 0;
+        }
+
+        /* Header */
+        header {
+            background-image: url('https://via.placeholder.com/1920x600'); /* Replace with a real image */
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            color: white;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 0 20px;
+        }
+        header h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        header p {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        .cta-button {
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .cta-button:hover {
+            background-color: #e55b50;
+        }
+
+        /* Navigation Bar */
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+            padding: 15px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+        nav a:hover {
+            background-color: #ff6f61;
+        }
+
+        /* Sections */
+        section {
+            padding: 60px 20px;
+            text-align: center;
+            display: none;
+        }
+        section.active {
+            display: block;
+        }
+
+        /* About Us Section */
+        #about {
+            background-color: #f7f7f7;
+        }
+
+        /* Menu Section */
+        #menu {
+            background-color: #fffbf2;
+        }
+
+        /* Gallery Section */
+        #gallery {
+            background-color: #f2f2f2;
+        }
+
+        /* Feedback Section */
+        #feedback {
+            background-color: #ffe6e1;
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: #f1f1f1;
+        }
+
+        /* Gallery images */
+        .gallery img {
+            width: 250px;
+            height: 250px;
+            margin: 20px;
+            border-radius: 10px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            background-color: #333;
+            color: white;
+            padding: 15px 0;
+        }
+
+        /* Form Styling */
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .form-group label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .form-group button {
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .form-group button:hover {
+            background-color: #e55b50;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section with Hero Image -->
+    <header>
+        <h1>Welcome to Our Cake Shop</h1>
+        <p>Delicious Cakes for Every Occasion</p>
+        <a href="#menu" class="cta-button">Browse Our Menu</a>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="#" onclick="showSection('about')">About Us</a>
+        <a href="#" onclick="showSection('menu')">Menu</a>
+        <a href="#" onclick="showSection('gallery')">Gallery</a>
+        <a href="#" onclick="showSection('feedback')">Feedback</a>
+        <a href="#" onclick="showSection('contact')">Contact Us</a>
+    </nav>
+
+    <!-- About Us Section -->
+    <section id="about">
+        <h2>About Us</h2>
+        <p>Welcome to our cake shop! We specialize in making your celebrations sweeter with our delicious cakes, pastries, and desserts. Each cake is crafted with love and the finest ingredients.</p>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu">
+        <h2>Our Menu</h2>
+        <p>Explore our scrumptious cake selection, from rich chocolate cakes to light and fluffy cupcakes!</p>
+        <ul>
+            <li>Chocolate Cake</li>
+            <li>Red Velvet Cake</li>
+            <li>Cheesecake</li>
+            <li>Vanilla Cupcakes</li>
+        </ul>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <h2>Gallery</h2>
+        <p>Check out some of our delicious creations!</p>
+        <div class="gallery">
+            <img src="https://via.placeholder.com/250" alt="Cake 1">
+            <img src="https://via.placeholder.com/250" alt="Cake 2">
+            <img src="https://via.placeholder.com/250" alt="Cake 3">
+        </div>
+    </section>
+
+    <!-- Feedback Section -->
+    <section id="feedback">
+        <h2>Give Us Your Feedback</h2>
+        <form>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="feedback">Your Feedback</label>
+                <textarea id="feedback" placeholder="Tell us about your experience"></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit">Submit Feedback</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Have any questions? Feel free to reach out to us!</p>
+        <p>Phone: +123 456 7890</p>
+        <p>Email: cakeshop@example.com</p>
+        <p>Address: 123 Cake Street, Sweet City</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Cake Shop. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function showSection(id) {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(id).classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
